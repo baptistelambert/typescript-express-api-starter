@@ -1,0 +1,10 @@
+{
+  "port": 1337,
+  "database": {
+    "name": "typescript-express-api",
+    "host": "localhost",
+    "port": 27017,
+    "user": "",
+    "pw": ""
+  }
+}

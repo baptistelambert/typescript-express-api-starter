@@ -1,9 +1,19 @@
 import * as chalk from 'chalk'
 
+import * as configData from '../config/config.json'
+import Database from './Database'
 import Server from './Server'
 
-const server = Server.bootstrap()
+const config: any = (configData as any)
+const dbConfig: any = config.database
 
-server.run(3000, () => {
-  console.log(chalk.green(`Server now listening on ${chalk.cyan.underline.bold(`http://localhost:3000`)}`))
-})
+const db: Database = new Database(dbConfig.name, dbConfig.host, dbConfig.port, dbConfig.user, dbConfig.pass)
+const server: Server = Server.bootstrap()
+
+db
+  .connect()
+  .then(() => {
+    server.run(config.port, () => {
+      console.log(chalk.green(`[SERVER] Started on ${chalk.cyan(`http://localhost:${config.port}`)}`))
+    })
+  })

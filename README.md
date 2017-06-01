@@ -8,6 +8,10 @@ A simple starter for an OOP-oriented Typescript express API
 - npm
 
 ## Installation
+Copy the ```./config/config.json.dist``` file to ```./config/config.json``` and change your parameters accordingly.
+
+Then install dependencies:
+
 ```npm install```
 
 ## Run it !

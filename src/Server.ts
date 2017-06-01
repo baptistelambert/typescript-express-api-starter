@@ -23,7 +23,6 @@ export default class Server {
     return new Server()
   }
 
-  /** @type {express.Application} */
   private app: express.Application
 
   /**
