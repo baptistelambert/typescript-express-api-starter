@@ -7,8 +7,11 @@
   "scripts": {
     "start": "node ./build/index.js",
     "prestart": "npm run build",
-    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run start\"",
-    "build": "./node_modules/rimraf/bin.js ./build && tsc",
+    "dev": "concurrently \"npm run watch\" \"nodemon ./build/index.js\"",
+    "predev": "npm run build",
+    "watch": "tsc -w",
+    "build": "tsc",
+    "build:clean": "./node_modules/rimraf/bin.js ./build && tsc",
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --type-check './src/**/*.ts'"
   },
   "dependencies": {
@@ -23,6 +26,7 @@
     "@types/express": "^4.0.35",
     "@types/mongoose": "^4.7.13",
     "@types/node": "^7.0.23",
+    "concurrently": "^3.4.0",
     "nodemon": "^1.11.0",
     "tslint": "^5.4.0",
     "typescript": "^2.3.4"
